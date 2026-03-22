@@ -59,8 +59,15 @@ class MyPlugin(Star):
             logger.error(f"获取会话历史失败: {e}")
             return f"获取会话历史失败: {e}" 
         history = json.loads(conversation.history) if conversation and conversation.history else []
-        recent_history = history[-length:]
-
+        result = []
+        for msg in history:
+            if msg.get("role") in ["user", "assistant"]:
+                result.append({
+                    "role": msg.get("role"),
+                    "content": msg.get("content")
+                })
+                
+        recent_history = result[-length:]
         return recent_history
         
 
