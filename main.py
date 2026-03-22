@@ -46,7 +46,6 @@ class MyPlugin(Star):
         
         uid = type_name + subject_id
         logger.info(f"查看当前uid：{uid}")
-        logger.info(f"查看当前会话id：{subject_id}")
         # provider_id = await self.context.get_current_chat_provider_id(uid)
         # logger.info(f"uid:{uid}")
 
@@ -66,7 +65,7 @@ class MyPlugin(Star):
                     "role": msg.get("role"),
                     "content": msg.get("content")
                 })
-                
+
         recent_history = result[-length:]
         return recent_history
         
