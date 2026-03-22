@@ -62,11 +62,11 @@ class MyPlugin(Star):
         for msg in history:
             if msg.get("role") in ["user", "assistant"]:
                 content_result = []
-                logger.info(f"测试1：{msg.get('content', [])}")
+                # logger.info(f"测试1：{msg.get('content', [])}")
                 # logger.info(f"测试2：{msg.get('content')[0]}")
                 for content in msg.get("content") or []:
                     if isinstance(content, dict):
-                        logger.info(f"测试3：{content}")
+                        # logger.info(f"测试3：{content}")
                         if content.get("type", "") == "text":
                             content_result.append(content.get("text", ""))
 
