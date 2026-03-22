@@ -1,8 +1,14 @@
 import json
+from astrbot.api.provider import ProviderRequest
 
 from astrbot.api.event import filter, AstrMessageEvent, MessageEventResult
-from astrbot.api.star import Context, Star, register
 from astrbot.api import logger
+from astrbot.api.event import AstrMessageEvent, filter
+from astrbot.api.star import Context, Star, register
+
+import json_repair
+
+from astrbot.api import AstrBotConfig
 
 @register("access_others_chat_history", "兔子", "一个简单的 Hello World 插件", "1.0.0")
 class MyPlugin(Star):
@@ -15,8 +21,12 @@ class MyPlugin(Star):
 
 
     @filter.llm_tool(name="access_others_chat_history") 
-    async def access_others_chat_history(self, GroupOrFriend: bool, subject_id: str,
-                                ) -> MessageEventResult:
+    async def access_others_chat_history(
+        self,
+        event: AstrMessageEvent,
+        GroupOrFriend: bool,
+        subject_id: str,
+    ) -> MessageEventResult:
 
         '''访问他人聊天记录工具，
         大模型可以调用这个工具来访问与其他id的聊天记录，调用时请按顺序确保提供正确的参数。
