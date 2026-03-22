@@ -5,7 +5,7 @@ from astrbot.api.event import filter, AstrMessageEvent, MessageEventResult
 from astrbot.api import logger
 from astrbot.api.event import AstrMessageEvent, filter
 from astrbot.api.star import Context, Star, register
-
+from typing import Any, Dict, List, Optional, Tuple
 import json_repair
 
 from astrbot.api import AstrBotConfig
@@ -26,6 +26,7 @@ class MyPlugin(Star):
         event: AstrMessageEvent,
         GroupOrFriend: bool,
         subject_id: str,
+        length: Optional[int] = 20
     ) -> MessageEventResult:
 
         '''访问他人聊天记录工具，
@@ -36,6 +37,7 @@ class MyPlugin(Star):
         Args:
             GroupOrFriend (bool): True 表示更新群记忆，False 表示更新好友记忆。
             subject_id (str): 群id或好友id.
+            length (int, optional): (可选）需要访问的聊天记录条数，默认为20条。注意，不易过长，否则会报错
         '''
         
         if not isinstance(GroupOrFriend, bool):
@@ -57,8 +59,9 @@ class MyPlugin(Star):
             logger.error(f"获取会话历史失败: {e}")
             return f"获取会话历史失败: {e}" 
         history = json.loads(conversation.history) if conversation and conversation.history else []
+        recent_history = history[-length:]
 
-        return history
+        return recent_history
         
 
     async def terminate(self):
