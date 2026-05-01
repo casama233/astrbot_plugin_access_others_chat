@@ -42,9 +42,14 @@ class MyPlugin(Star):
         length = max(1, min(length, 100))  # 确保 length 在 1 到 100 之间
         if not isinstance(isGroup, bool):
             return "参数 isGroup 必须是布尔值，True 表示群记忆，False 表示好友记忆。"
-        type_name = "default:GroupMessage:" if isGroup else "default:FriendMessage:"
         
-        uid = type_name + subject_id
+        # 如果 subject_id 已包含 ":"，视为完整 unified_msg_origin 直接使用
+        # 否则按旧逻辑补上默认前缀
+        if ":" in subject_id:
+            uid = subject_id
+        else:
+            type_name = "default:GroupMessage:" if isGroup else "default:FriendMessage:"
+            uid = type_name + subject_id
         # provider_id = await self.context.get_current_chat_provider_id(uid)
         # logger.info(f"uid:{uid}")
 
