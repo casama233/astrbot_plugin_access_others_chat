@@ -113,3 +113,11 @@ astrbot_plugin_access_others_chat_history/
 AGPL-3.0
 
 > 本插件在 AGPL v3 协议下发布。如果你修改并部署了本插件，请公开你的修改。
+
+## 上游來源與授權
+
+This repository is a fork of the upstream project. The upstream AGPL-3.0 license and its applicable notices must be preserved; this fork does not claim the upstream work as newly authored.
+
+- 上游專案：[KonmaKanSinPack/astrbot_plugin_access_others_chat](https://github.com/KonmaKanSinPack/astrbot_plugin_access_others_chat)
+- 上游授權狀態：AGPL-3.0
+- 本倉庫保留上游來源脈絡；請勿將本倉庫的新增修改誤認為上游作者的作品，也勿將本倉庫授權擴張到第三方素材、資料或依賴。
