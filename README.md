@@ -1,5 +1,7 @@
 # access_others_chat_history
 
+**简体中文** · [繁體中文](README.zh-TW.md) · [English](README.en.md)
+
 为 AstrBot 大模型提供**跨会话访问聊天记录**的能力。让机器人在和你聊天时，也能知道在其他平台/会话里聊了什么——实现**全局记忆感知**。
 
 ## 功能
